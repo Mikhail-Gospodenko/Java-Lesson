@@ -19,6 +19,8 @@ public class SortingAlgorithm {
                 }
             }
         }
+        printArray(arr);
+
         // сортировка выбором
         int[] arr1 = {53, 42, 31, 23, 12};
         int min = 0;
@@ -33,8 +35,15 @@ public class SortingAlgorithm {
             int temp = arr1[i];
             arr1[i] = arr1[min];
             arr1[min] = temp;
-            System.out.println(arr1[i]);
         }
+        printArray(arr1);
+    }
+
+    static void printArray(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(String.format("%3d ", arr[i]));
+        }
+        System.out.println();
     }
 
 }
