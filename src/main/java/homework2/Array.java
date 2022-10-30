@@ -2,12 +2,22 @@ package homework2;
 
 public class Array {
     public static void main(String[] args) {
+        //задание 6
+        int[] checkBalance = {2, 2, 2, 1, 2, 2, 10, 1};
+        amountIs(checkBalance);
+
+        //задание 7
+        int[] array = {5, 8, 1, 4};
+        int n = 1;
+        moving(array, n);
+
+
         //1. Задать целочисленный массив, состоящий из элементов 0 и 1. Например: [ 1, 1, 0, 0, 1, 0, 1, 1, 0, 0 ].
         // С помощью цикла и условия заменить 0 на 1, 1 на 0;
 
         System.out.println(" ");
         System.out.println("\nЗадание 1 :");
-        int[] array = {0, 1, 0, 0, 0, 1, 1};
+        int[] arrayZeroOne = {0, 1, 0, 0, 0, 1, 1};
 
         printArray(array);
         for (int i = 0; i < array.length; i++) {
@@ -84,6 +94,49 @@ public class Array {
 
     //1, 98, 13, 50, 12, 21, 48, 5
 
+    // задание 6
+    // Написать метод, в который передается не пустой одномерный целочисленный массив,
+    // метод должен вернуть true, если в массиве есть место, в котором сумма левой и
+    // правой части массива равны.
+    static boolean amountIs(int[] checkBalance) {
+        System.out.println("Задание 6: ");
+        int leftAmount = 0, rightAmount = 0;
+        for (int i = 0; i < checkBalance.length; i++) {
+            leftAmount += checkBalance[i];
+        }
+        for (int i : checkBalance) {// цикл for each, альтернатива цикла выше
+            if (leftAmount == rightAmount) {
+                return true;
+            }
+            leftAmount = leftAmount - i;
+            rightAmount = rightAmount + i;
+        }
+        return false;
+    }
+
+    // задание 7
+    // Написать метод, которому на вход подается одномерный массив и
+    // число n (может быть положительным, или отрицательным), при этом метод должен
+    // сместить все элементы массива на n позиций. Для усложнения задачи нельзя
+    // пользоваться вспомогательными массивами.
+    public static void moving(int[] arr, int n) {
+        int temp;
+        int len = arr.length - 1;
+        if (n < 0) {
+            for (int i = 0; i < -n; i++) {
+                temp = arr[0];
+                arr[len] = temp;
+            }
+        } else {
+            for (int i = 0; i < n; i++) {
+                temp = arr[len];
+                arr[0] = temp;
+            }
+        }
+    }
+
+
+    // метод для перебора массива
     static void printArray(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             System.out.print(String.format("%3d ", arr[i]));
@@ -100,6 +153,8 @@ public class Array {
         }
         System.out.println();
     }
+
+
 }
 
 
