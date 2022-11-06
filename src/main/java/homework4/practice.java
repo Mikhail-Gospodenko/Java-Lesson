@@ -14,6 +14,7 @@ public class practice {
             int guessNumber = rand.nextInt(9);
             System.out.println("Угадайте число от 0 до 9");
 
+            //Change
             boolean isGuess = false;
             int tryCount = 0;
 
