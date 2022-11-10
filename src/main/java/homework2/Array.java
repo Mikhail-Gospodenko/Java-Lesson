@@ -1,19 +1,16 @@
 package homework2;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Array {
     public static void main(String[] args) {
         //задание 6
         int[] checkBalance = {2, 2, 2, 1, 2, 2, 10, 1};
-        System.out.println(amountIs(checkBalance));
+        amountIs(checkBalance);
 
         //задание 7
-        System.out.println("Задание 7:");
         int[] array = {5, 8, 1, 4};
-        int n = -1;
+        int n = 1;
         moving(array, n);
+
 
         //1. Задать целочисленный массив, состоящий из элементов 0 и 1. Например: [ 1, 1, 0, 0, 1, 0, 1, 1, 0, 0 ].
         // С помощью цикла и условия заменить 0 на 1, 1 на 0;
@@ -122,8 +119,8 @@ public class Array {
     // число n (может быть положительным, или отрицательным), при этом метод должен
     // сместить все элементы массива на n позиций. Для усложнения задачи нельзя
     // пользоваться вспомогательными массивами.
-    public static void moving(int[] arr, int pos) {
-        /*int temp;
+    public static void moving(int[] arr, int n) {
+        int temp;
         int len = arr.length - 1;
         if (n < 0) {
             for (int i = 0; i < -n; i++) {
@@ -135,27 +132,7 @@ public class Array {
                 temp = arr[len];
                 arr[0] = temp;
             }
-        }*/
-        System.out.println("Задание 7: ");
-        printArray(arr);
-
-        //Если количество сдвигов больше размера массива то берем мод. При этом сдвинуть на -pos тоже самое что
-        //сдвинуть на (длина массива минус pos), дабы не писать лишний код для отрицательного числа
-        pos = (pos > 0) ? pos % arr.length : arr.length + pos % arr.length;
-
-        //Подход №1 рабочий и короткий, но не нравится что мы выполняем сдвиг массива (pos * (arr.length-1)) раз
-        System.out.print("Подход №1 ");
-        for (int j = 0; j < pos; j++) {
-            int buffer = arr[0];
-
-            //Делаем сдвиг на один элемент
-            for (int i = 0; i < arr.length - 1; i++) {
-                arr[i] = arr[i + 1];
-            }
-            arr[arr.length - 1] = buffer;
         }
-        printArray(arr);
-        //Подход №2. https://codelab.ru/t/cycle_shift/
     }
 
 
