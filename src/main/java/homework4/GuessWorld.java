@@ -1,36 +1,12 @@
 package homework4;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 import java.util.Random;
 
-public class practice {
+public class GuessWorld {
     public static void main(String[] args) {
-        boolean b = false;
-
         Scanner scan = new Scanner(System.in);
-        /*do {
-            Random rand = new Random();
-            int guessNumber = rand.nextInt(9);
-            System.out.println("Угадайте число от 0 до 9");
 
-            //Change
-            boolean isGuess = false;
-            int tryCount = 0;
-
-            while (isGuess != true && tryCount < 3) {
-                int userNumber = scan.nextInt();
-                isGuess = isGuess(userNumber, guessNumber);
-                tryCount++;
-            }
-
-            System.out.println("Попробуйте ещё 1 - да");
-            int again = scan.nextInt();
-            if (again == 1) {
-                b = true;
-            }
-        } while (b);
-      */
         //* Создать массив из слов String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli", "carrot", "cherry", "garlic", "grape",
         // "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive", "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
         //При запуске программы компьютер загадывает слово, запрашивает ответ у пользователя,
@@ -44,36 +20,39 @@ public class practice {
         //Играем до тех пор, пока игрок не отгадает слово
         //Используем только маленькие буквы
 
-        Random rand = new Random();
-        System.out.println("Угадайте слово");
-        int guessNumber = rand.nextInt(9);
         String[] words = {"apple", "orange", "lemon", "banana", "apricot",
                 "avocado", "broccoli", "carrot", "cherry", "garlic", "grape",
                 "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive",
                 "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
-        String guessWord = words[guessNumber];
 
-        do{
+        System.out.println("Угадайте слово");
+        Random rand = new Random();
+        int guessNumber = rand.nextInt(words.length);
+        String guessWord = words[guessNumber];
+        System.out.println(guessWord);
+
+        boolean isGuess = false;
+        do {
             String userWord = scan.nextLine();
-        if (userWord == words[guessNumber] ) {
+        if (userWord.equals(guessWord)) {
+                isGuess = true;
                 System.out.println("Вы угадали правильное слово");
             } else {
-                System.out.println("Вы не угадали правильное слово, вот первые символы: " + guessWord.charAt(0) + guessWord.charAt(1) + "##########");
+                checkWorld(guessWord, userWord);
             }
-        } while(true);
+        } while(!isGuess);
     }
 
-
-    static boolean isGuess(int userNumber, int guessNumber) {
-        if (userNumber == guessNumber) {
-            System.out.println("Вы угадали правильное число");
-            return true;
-        } else if (userNumber > guessNumber) {
-            System.out.println("Число меньше");
-        } else if (userNumber < guessNumber) {
-            System.out.println("Число больше");
+    private static void checkWorld(String guessWord, String userWord) {
+        System.out.println("Вы не угадали");
+        for (int i = 0; i < guessWord.length(); i++) {
+            if (userWord.length() > i && guessWord.charAt(i) == userWord.charAt(i)) {
+                System.out.print(guessWord.charAt(i));
+            } else {
+                System.out.print("#");
+            }
         }
-        return false;
+        System.out.println();
     }
 }
 
