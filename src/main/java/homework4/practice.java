@@ -9,7 +9,7 @@ public class practice {
         boolean b = false;
 
         Scanner scan = new Scanner(System.in);
-        do {
+        /*do {
             Random rand = new Random();
             int guessNumber = rand.nextInt(9);
             System.out.println("Угадайте число от 0 до 9");
@@ -29,7 +29,40 @@ public class practice {
                 b = true;
             }
         } while (b);
+      */
+        //* Создать массив из слов String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli", "carrot", "cherry", "garlic", "grape",
+        // "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive", "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
+        //При запуске программы компьютер загадывает слово, запрашивает ответ у пользователя,
+        //сравнивает его с загаданным словом и сообщает правильно ли ответил пользователь. Если слово не угадано, компьютер показывает буквы которые стоят на своих местах.
+        //apple – загаданное
+        //apricot - ответ игрока
+        //ap############# (15 символов, чтобы пользователь не мог узнать длину слова)
+        //Для сравнения двух слов посимвольно, можно пользоваться:
+        //String str = "apple";
+        //str.charAt(0); - метод, вернет char, который стоит в слове str на первой позиции
+        //Играем до тех пор, пока игрок не отгадает слово
+        //Используем только маленькие буквы
+
+        Random rand = new Random();
+        System.out.println("Угадайте слово");
+        int i = 0;
+        int guessNumber = rand.nextInt(9);
+        String[] words = {"apple", "orange", "lemon", "banana", "apricot",
+                "avocado", "broccoli", "carrot", "cherry", "garlic", "grape",
+                "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive",
+                "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
+        String guessWord = words[guessNumber];
+
+        do{
+            String userWord = scan.nextLine();
+        if (userWord == words[guessNumber] ) {
+                System.out.println("Вы угадали правильное слово");
+            } else {
+                System.out.println("Вы не угадали правильное слово, вот первые символы: " + guessWord.charAt(0) + guessWord.charAt(1) + "##########");
+            }
+        } while(true);
     }
+
 
     static boolean isGuess(int userNumber, int guessNumber) {
         if (userNumber == guessNumber) {
@@ -43,3 +76,4 @@ public class practice {
         return false;
     }
 }
+
