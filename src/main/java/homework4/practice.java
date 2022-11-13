@@ -45,7 +45,6 @@ public class practice {
 
         Random rand = new Random();
         System.out.println("Угадайте слово");
-        int i = 0;
         int guessNumber = rand.nextInt(9);
         String[] words = {"apple", "orange", "lemon", "banana", "apricot",
                 "avocado", "broccoli", "carrot", "cherry", "garlic", "grape",
