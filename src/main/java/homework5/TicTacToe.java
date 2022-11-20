@@ -3,7 +3,8 @@ package homework5;
 /* Крестики-нолики в процедурном стиле
 1. Полностью разобраться с кодом, попробовать переписать с нуля, стараясь не подглядывать в методичку;
 2. Переделать проверку победы, чтобы она не была реализована просто набором условий, например, с использованием циклов.
-3. * Попробовать переписать логику проверки победы, чтобы она работала для поля 5х5 и количества фишек 4. Очень желательно не делать это просто набором условий для каждой из возможных ситуаций;
+3. * Попробовать переписать логику проверки победы, чтобы она работала для поля 5х5 и количества фишек 4.
+Очень желательно не делать это просто набором условий для каждой из возможных ситуаций;
 4. *** Доработать искусственный интеллект, чтобы он мог блокировать ходы игрока.
 */
 
@@ -12,20 +13,20 @@ import java.util.Scanner;
 
 public class TicTacToe {
 
-    public static final int fieldSize = 5;         // размер игрового поля
-    public static final int dotsToWin = 4;        // сколько ячеек нужно подряд заполнить, чтобы победить
+    public static final int FIELD_SIZE = 3;         // размер игрового поля
+    public static final int DOTS_TO_WIN = 3;        // сколько ячеек нужно подряд заполнить, чтобы победить
 
-    public static final char emptyDot = '.';       // заполнитель для пустой ячейки
-    public static final char humanTurn = 'X';
-    public static final char ioTurn = 'O';
+    public static final char EMPTY_DOT = '.';       // заполнитель для пустой ячейки
+    public static final char HUMAN_TURN = 'X';
+    public static final char IO_TURN = 'O';
     public static Scanner scan = new Scanner(System.in);
     public static char[][] gameField;               // игровое поле - в виде двумерного массива символов
 
     public static void initGameField() {
-        gameField = new char[fieldSize][fieldSize];
-        for (int i = 0; i < fieldSize; i++) {
-            for (int j = 0; j < fieldSize; j++) {
-                gameField[i][j] = emptyDot;
+        gameField = new char[FIELD_SIZE][FIELD_SIZE];
+        for (int i = 0; i < FIELD_SIZE; i++) {
+            for (int j = 0; j < FIELD_SIZE; j++) {
+                gameField[i][j] = EMPTY_DOT;
             }
         }
     }
@@ -46,7 +47,7 @@ public class TicTacToe {
     }
 
     public static boolean isCellAvailable(int x, int y) {
-        if(x >= 0 && x < fieldSize && y >= 0 && y < fieldSize && gameField[y][x] == emptyDot){
+        if(x >= 0 && x < FIELD_SIZE && y >= 0 && y < FIELD_SIZE && gameField[y][x] == EMPTY_DOT){
             return true;
         }
         return false;
@@ -59,103 +60,103 @@ public class TicTacToe {
             x = scan.nextInt() - 1;
             y = scan.nextInt() - 1;
         } while (!isCellAvailable(x, y));
-        gameField[y][x] = humanTurn;
+        gameField[y][x] = HUMAN_TURN;
     }
 
     public static void ioTurn() {
         int x, y;
         do {
-            x = new Random().nextInt(fieldSize);
-            y = new Random().nextInt(fieldSize);
+            x = new Random().nextInt(FIELD_SIZE);
+            y = new Random().nextInt(FIELD_SIZE);
         } while (!isCellAvailable(x, y));
         System.out.println("ИИ походил в ячейку " + (x + 1) + " " + (y + 1));
-        gameField[y][x] = ioTurn;
+        gameField[y][x] = IO_TURN;
     }
 
     public static boolean isWin(char playerDot) {
         int hor, ver;
         int diagMain, diagSecond;
-        for (int i = 0; i < fieldSize; i++) {
+        for (int i = 0; i < FIELD_SIZE; i++) {
             hor = 0;
             ver = 0;
-            for (int j = 0; j < fieldSize; j++) {
+            for (int j = 0; j < FIELD_SIZE; j++) {
                 if (gameField[i][j] == playerDot) {                          // горизонтальная линия
                     hor++;
-                } else if (gameField[i][j] != playerDot && hor < dotsToWin) {
+                } else if (gameField[i][j] != playerDot && hor < DOTS_TO_WIN) {
                     hor = 0;
                 }
                 if (gameField[j][i] == playerDot) {                          // вертикальная линия
                     ver++;
-                }   else if (gameField[j][i] != playerDot && ver < dotsToWin) {
+                }   else if (gameField[j][i] != playerDot && ver < DOTS_TO_WIN) {
                     ver = 0;
                 }
             }
-            if (hor >= dotsToWin || ver >= dotsToWin) {
+            if (hor >= DOTS_TO_WIN || ver >= DOTS_TO_WIN) {
                 return true;
             }
         }
 
-        for (int j = 0; j < fieldSize; j++) {
+        for (int j = 0; j < FIELD_SIZE; j++) {
             diagMain = 0;
-            for (int i = 0; i < fieldSize; i++) {
+            for (int i = 0; i < FIELD_SIZE; i++) {
                 int k = j + i;
-                if (k < fieldSize) {
+                if (k < FIELD_SIZE) {
                     if (gameField[i][k] == playerDot) {                      // главная диагональ
                         diagMain++;
-                    } else if (gameField[i][k] != playerDot && diagMain < dotsToWin) {
+                    } else if (gameField[i][k] != playerDot && diagMain < DOTS_TO_WIN) {
                         diagMain = 0;
                     }
                 }
-                if (diagMain >= dotsToWin) {
+                if (diagMain >= DOTS_TO_WIN) {
                     return true;
                 }
             }
         }
-        for (int j = 1; j < fieldSize; j++) {
+        for (int j = 1; j < FIELD_SIZE; j++) {
             diagMain = 0;
-            for (int i = 0; i < fieldSize; i++) {
+            for (int i = 0; i < FIELD_SIZE; i++) {
                 int k = j + i;
-                if (k < fieldSize) {
+                if (k < FIELD_SIZE) {
                     if (gameField[k][i] == playerDot) {
                         diagMain++;
-                    } else if (gameField[k][i] != playerDot && diagMain < dotsToWin) {
+                    } else if (gameField[k][i] != playerDot && diagMain < DOTS_TO_WIN) {
                         diagMain = 0;
                     }
                 }
-                if (diagMain >= dotsToWin) {
+                if (diagMain >= DOTS_TO_WIN) {
                     return true;
                 }
             }
         }
-        for (int j = 0; j < fieldSize; j++) {
+        for (int j = 0; j < FIELD_SIZE; j++) {
             diagSecond = 0;
-            for (int i = 0; i < fieldSize; i++) {
-                int k = (fieldSize - 1) - i;
+            for (int i = 0; i < FIELD_SIZE; i++) {
+                int k = (FIELD_SIZE - 1) - i;
                 int l = j + i;
-                if (k >= 0 && l < fieldSize) {
+                if (k >= 0 && l < FIELD_SIZE) {
                     if (gameField[l][k] == playerDot) {                     // вторая диагональ
                         diagSecond++;
-                    } else if (gameField[l][k] != playerDot && diagSecond < dotsToWin) {
+                    } else if (gameField[l][k] != playerDot && diagSecond < DOTS_TO_WIN) {
                         diagSecond = 0;
                     }
                 }
-                if (diagSecond >= dotsToWin) {
+                if (diagSecond >= DOTS_TO_WIN) {
                     return true;
                 }
             }
         }
-        for (int j = 1; j < fieldSize; j++) {
+        for (int j = 1; j < FIELD_SIZE; j++) {
             diagSecond = 0;
-            for (int i = 0; i < fieldSize; i++) {
-                int k = (fieldSize - 1) - j - i;
+            for (int i = 0; i < FIELD_SIZE; i++) {
+                int k = (FIELD_SIZE - 1) - j - i;
                 if (k >= 0) {
                     if (gameField[i][k] == playerDot) {
                         diagSecond++;
-                    } else if (gameField[i][k] != playerDot && diagSecond < dotsToWin) {
+                    } else if (gameField[i][k] != playerDot && diagSecond < DOTS_TO_WIN) {
                         diagSecond = 0;
                     }
                 }
-                if (diagSecond >= dotsToWin) {
+                if (diagSecond >= DOTS_TO_WIN) {
                     return true;
                 }
             }
@@ -166,7 +167,7 @@ public class TicTacToe {
     public static boolean isDraw() {                            // ничья
         for (char[] aGameField : gameField) {
             for (int j = 0; j < gameField.length; j++) {
-                if (aGameField[j] == emptyDot) {
+                if (aGameField[j] == EMPTY_DOT) {
                     return false;
                 }
             }
@@ -184,7 +185,7 @@ public class TicTacToe {
                 while (true) {
                     humanTurn();
                     printGameField();
-                    if (isWin(humanTurn)) {
+                    if (isWin(HUMAN_TURN)) {
                         System.out.println("Вы победили");
                         break;
                     }
@@ -194,7 +195,7 @@ public class TicTacToe {
                     }
                     ioTurn();
                     printGameField();
-                    if (isWin(ioTurn)) {
+                    if (isWin(IO_TURN)) {
                         System.out.println("Победил ИИ");
                         break;
                     }
@@ -210,7 +211,7 @@ public class TicTacToe {
                 while (true) {
                     ioTurn();
                     printGameField();
-                    if (isWin(ioTurn)) {
+                    if (isWin(IO_TURN)) {
                         System.out.println("Победил ИИ");
                         break;
                     }
@@ -220,7 +221,7 @@ public class TicTacToe {
                     }
                     humanTurn();
                     printGameField();
-                    if (isWin(humanTurn)) {
+                    if (isWin(HUMAN_TURN)) {
                         System.out.println("Вы победили");
                         break;
                     }
