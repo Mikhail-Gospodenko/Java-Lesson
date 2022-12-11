@@ -1,18 +1,22 @@
 package homework7;
 
 public class Cat extends Animal {
-    public Cat() {
+    //TODO реализовать подсчет котов
+    public Cat(String name) {
+        super(name);
     }
 
+    @Override
     public void run(int length) {
         if (length < 200) {
-            System.out.println("Кот " + name + "пробежал " + length + " метров");
+            super.run(length);
         } else {
-            System.out.println("Кот" + name + " не сможет пробежать " + length + " метров");
+            System.out.println(name + " не умеет столько бегать");
         }
     }
 
-    public void swim() {
+    @Override
+    public void swim(int length) {
         System.out.println("Кот не умеет плавать");
     }
 }

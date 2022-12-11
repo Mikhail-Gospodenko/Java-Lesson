@@ -1,21 +1,23 @@
 package homework7;
 
 public class Animal {
-    int length;
-    String name;
+    protected String name;
+    private static int count = 0;
 
-    public Animal() {
-    }
-
-    public Animal(int length, String name) {
-        this.length = length;
+    public Animal(String name) {
         this.name = name;
+        count++;
     }
 
     public void run(int length) {
-        System.out.println(name + "пробежал" + length + "метров");
+        System.out.println(name + " пробежал " + length + " метров");
     }
-    public void swim(int length){
-        System.out.println(name + "проплыл" + length + "метров");
+
+    public void swim (int length) {
+        System.out.println(name + " проплыл " + length + " метров");
+    }
+
+    public static int getCount() {
+        return count;
     }
 }
