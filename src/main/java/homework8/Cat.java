@@ -2,22 +2,22 @@ package homework8;
 
 public class Cat {
     private String name;
-    private boolean hungry;
+    private boolean isHungry;
     private int appetite;
 
     public Cat(String name, int appetite) {
         this.name = name;
         this.appetite = appetite;
-        this.hungry = true;
+        this.isHungry = true;
     }
 
-    void eat(Plate p) {
-        if (hungry && p.decreaseFood(appetite))
-            hungry = false;
+    public void eat(Plate p) {
+        if (isHungry && p.decreaseFood(appetite))
+            isHungry = false;
     }
-    void info() {
-        String isHungry = !hungry ? "сыт" : "голоден";
-        System.out.println(name + ": " + isHungry);
+    public void info() {
+        String hungry = !this.isHungry ? "сыт" : "голоден";
+        System.out.println(name + ": " + hungry);
     }
 }
 
