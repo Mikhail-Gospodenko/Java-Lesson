@@ -18,9 +18,9 @@ public class Main {
     Human[] human = {
             new Human("Vasya", 50, 10),
             new Human("Mars", 50, 50),
-            new Human("Snezhok", 25, 25),
-            new Human("Murzik", 5, 20),
-            new Human("Kote", 1, 1)};
+            new Human("Petr", 25, 25),
+            new Human("Aleksandr", 5, 20),
+            new Human("Roma", 1, 1)};
 
     Racetrack[] racetrack = new Racetrack[]{
             new Racetrack(10, 10),
