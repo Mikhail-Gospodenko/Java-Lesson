@@ -1,10 +1,11 @@
 package homework10;
 
-public class Robot {
-    public void run (){
-        System.out.println("Пробежал");
-    }
-    public void jump (){
-        System.out.println("Прыгнул");
+public class Robot implements Participant {
+    int maxRun;
+    int maxJump;
+
+    public Robot(int maxRun, int maxJump) {
+        this.maxRun = maxRun;
+        this.maxJump = maxJump;
     }
 }

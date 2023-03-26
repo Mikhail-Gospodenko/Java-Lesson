@@ -1,7 +1,5 @@
 package homework10;
 
-import homework8.Cat;
-
 public class Main {
     /* 1. Создайте три класса Человек, Кот, Робот, которые не наследуются от одного класса. Эти
     классы должны уметь бегать и прыгать (методы просто выводят информацию о действии в
@@ -15,16 +13,27 @@ public class Main {
     на бег и прыжки. Если участник не смог пройти одно из препятствий, то дальше по списку он
     препятствий не идет.
     */
-    Human[] human = {
-            new Human("Vasya", 50, 10),
-            new Human("Mars", 50, 50),
-            new Human("Petr", 25, 25),
-            new Human("Aleksandr", 5, 20),
-            new Human("Roma", 1, 1)};
+    public static void main(String[] args) {
 
-    Racetrack[] racetrack = new Racetrack[]{
-            new Racetrack(10, 10),
-            new Racetrack(1, 1),
-            new Racetrack(50, 25)};
+        Barrier[] barrierArray = new Barrier[4];
+        new Racetrack(50);
+        new Roadblock(50);
+        new Roadblock(25);
+        new Racetrack(20);
+        new Racetrack(1);
+
+
+        Participant[] participantArray = new Participant[4];
+        participantArray[0] = new Robot(10, 10);
+        participantArray[1] = new Cat(1, 1);
+        participantArray[2] = new Human(50, 25);
+        participantArray[3] = new Robot(50, 50);
+        participantArray[4] = new Cat(20, 50);
+
+        for(int i = 0; i < participantArray.length; i++){
+
+        }
+    }
 }
+
 

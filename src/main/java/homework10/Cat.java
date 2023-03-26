@@ -1,12 +1,12 @@
 package homework10;
 
-import java.sql.SQLOutput;
+public class Cat implements Participant {
+    int maxRun;
+    int maxJump;
 
-public class Cat {
-    public void run (){
-        System.out.println("Пробежал");
-    }
-    public void jump (){
-        System.out.println("Прыгнул");
+    public Cat(int maxRun, int maxJump) {
+        this.maxRun = maxRun;
+        this.maxJump = maxJump;
     }
 }
+
