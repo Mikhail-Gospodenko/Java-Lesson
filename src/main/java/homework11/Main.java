@@ -54,6 +54,23 @@ public class Main {
             }
         }
     }
+    public void isParsable(String[][] arr) throws MyArrayDataException{
+        int summa = 0;
+        int a = 0;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+                if(Integer.parseInt(arr[i][j]) >= 0) {
+                    summa +=Integer.parseInt(arr[i][j]);
+                }else {
+                    throw new MyArrayDataException(String.format("ERROR!  в %d-й" + " строке", i + 1));
+                }
+
+
+            }
+        }
+        System.out.println(summa);
+
+    }
 }
 
 
