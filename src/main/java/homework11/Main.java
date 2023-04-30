@@ -31,12 +31,20 @@ public class Main {
                 {"1", "2", "3", "4"},
                 {"1", "2", "3", "4"}
         };
+        String[][] incorrect4 = {
+                {"1", "2", "3", "4"},
+                {"1", "2", "3", "4"},
+                {"1", "a", "3", "4"},
+                {"1", "2", "3", "4"}
+        };
 
         try {
             checkArraySize(correct);
             checkArraySize(incorrect);
             checkArraySize(incorrect2);
-        } catch (MyArraySizeException e) {
+            isParsable(correct);
+            isParsable(incorrect4);
+        } catch (MyArraySizeException | MyArrayDataException e) {
             e.printStackTrace();
         }
     }
@@ -54,18 +62,18 @@ public class Main {
             }
         }
     }
-    public void isParsable(String[][] arr) throws MyArrayDataException{
+
+    public static void isParsable(String[][] arr) throws MyArrayDataException {
         int summa = 0;
-        int a = 0;
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
-                if(Integer.parseInt(arr[i][j]) >= 0) {
-                    summa +=Integer.parseInt(arr[i][j]);
-                }else {
-                    throw new MyArrayDataException(String.format("ERROR!  в %d-й" + " строке", i + 1));
+
+                try {
+                    summa += Integer.parseInt(arr[i][j]);
                 }
-
-
+                catch (NumberFormatException e) {
+                    throw new MyArrayDataException(String.format("ERROR! Не удалось преобразовать \"%s\" в число - элемент массива [%d,%d]", arr[i][j], i, j));
+                }
             }
         }
         System.out.println(summa);
