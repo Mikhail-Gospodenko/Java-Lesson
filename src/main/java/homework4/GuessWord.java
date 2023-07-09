@@ -3,7 +3,7 @@ package homework4;
 import java.util.Scanner;
 import java.util.Random;
 
-public class GuessWorld {
+public class GuessWord {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
