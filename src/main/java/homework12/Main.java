@@ -11,10 +11,24 @@ public class Main {
         taskTwo();
     }
 
+
     private static void taskTwo() {
-        Directory directory = new Directory();
-        //directory.add();
-        //directory.getPhoneByName();
+        PhoneBook phoneBook = new PhoneBook();
+        phoneBook.add("Пупкин", "8(800)555-35-35");
+        phoneBook.add("Захаров", "8(495)415-82-82");
+        phoneBook.add("Петров", "8(800)410-20-20");
+        phoneBook.add("Перов", "8(800)474-58-58");
+        phoneBook.add("Костенко", "8(496)274-16-79");
+        phoneBook.add("Печкин", "8(925)316-65-82");
+        phoneBook.add("Сидоров", "8(903)155-20-90");
+        phoneBook.add("Пупкин", "8(903)675-75-10");
+        phoneBook.add("Печкин", "8(495)613-43-04");
+        phoneBook.add("Пупкин", "8(800)410-20-20");
+
+        phoneBook.showPhoneBook();
+        System.out.println(phoneBook.get("Пупкин"));
+        System.out.println(phoneBook.get("Костенко"));
+        System.out.println(phoneBook.get("Не существующая фамилия"));
     }
 
     public static void taskOne() {
