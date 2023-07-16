@@ -1,7 +1,9 @@
 package homework12;
 
-import java.sql.SQLOutput;
+
 import java.util.*;
+
+import static com.sun.javafx.fxml.expression.Expression.add;
 //1. Создать массив с набором слов (10-20 слов, должны встречаться повторяющиеся).
 //Найти и вывести список уникальных слов, из которых состоит массив
 //(дубликаты не считаем). Посчитать, сколько раз встречается каждое слово
